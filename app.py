@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 from utils import load_data, build_index, search_chunks, ask_gpt
 
-load_dotenv()  # Load env variables, safe to call again
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -31,4 +31,6 @@ def home():
     return "Merchant Insights Chatbot is running!"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
